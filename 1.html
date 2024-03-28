@@ -2,27 +2,72 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 </head>
 
 <body>
-
+    <div id="app">
+        <div class="block">
+            <span class="demonstration">Click 指示器触发</span>
+            <el-carousel trigger="click" height="150px">
+                <el-carousel-item v-for="item in 4" :key="item">
+                    <h3 class="small">{{ item }}</h3>
+                </el-carousel-item>
+            </el-carousel>
+        </div>
+        <div>
+            <el-radio v-model="radio" label="1">备选项</el-radio>
+            <el-radio v-model="radio" label="2">备选项</el-radio>
+        </div>
+        <br>
+    </div>
 </body>
 <script>
-  document.addEventListener("mousedown", event => {
-    console.log("mousedown")
-  })
-  document.addEventListener("mouseup", event => {
-    console.log("mouseup")
-  })
-  document.addEventListener("mousemove", event => {
-    console.log("mousemove")
-  })
-  document.addEventListener("click", event => {
-    console.log("click")
-  })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            radio: '1'
+        },
+        created() {
+            this.submit()
+        },
+        updated() {
+            this.getMessige()
+        },
+        methods: {
+            submit() {
+                console.log(this.city)
+            },
+        }
+    })
 </script>
+<style>
+    .el-carousel {
+        width: 80%;
+    }
+
+    .el-carousel__item h3 {
+        color: #475669;
+        font-size: 20px;
+        opacity: 0.75;
+        line-height: 150px;
+        margin: 0;
+        text-align: center;
+    }
+
+    .el-carousel__item:nth-child(2n) {
+        background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n+1) {
+        background-color: #d3dce6;
+    }
+</style>
 
 </html>
